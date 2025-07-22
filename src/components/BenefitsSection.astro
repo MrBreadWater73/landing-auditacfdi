@@ -1,0 +1,453 @@
+---
+import { FeatureIcon } from './ui/FeatureIcon.tsx';
+
+const benefitsList = [
+  {
+    iconName: "Download",
+    title: "Descarga Automática",
+    description: "Descarga de forma automática los CFDI's emitidos y recibidos del SAT."
+  },
+  {
+    iconName: "CheckCircle2",
+    title: "Validación Completa",
+    description: "Validación de CFDI de ingresos recibidos y emitidos y sus complementos."
+  },
+  {
+    iconName: "FileSearch",
+    title: "Validación de Formato",
+    description: "Validación de Forma, método de pago y tipos de relación en los CFDI."
+  },
+  {
+    iconName: "AlertTriangle",
+    title: "Alertas de EFOS",
+    description: "Revisión y alertas automáticas para operaciones con EFOS (Empresas que facturan operaciones simuladas)."
+  },
+  {
+    iconName: "Mail",
+    title: "Avisos Automáticos",
+    description: "Avisos automáticos de errores vía correo electrónico (usuarios, auxiliares contables, ventas, clientes)."
+  },
+  {
+    iconName: "FileSearch",
+    title: "Control de Cancelaciones",
+    description: "Control e identificación de los CFDIs cancelados en periodo actual y anteriores."
+  }
+];
+
+const additionalBenefits = [
+  {
+    iconName: "CheckCircle2",
+    title: "Validación de Pagos",
+    description: "Validaciones y conciliaciones del CFDI de pagos."
+  },
+  {
+    iconName: "Calculator",
+    title: "Cálculo de IVA",
+    description: "Cálculo automático del IVA con CFDI 4.0 y pagos 2.0."
+  },
+  {
+    iconName: "FileSpreadsheet",
+    title: "Reporte de Nómina",
+    description: "Reporte detallado de CFDI de nómina."
+  },
+  {
+    iconName: "BarChart4",
+    title: "Conciliación de Ventas",
+    description: "Conciliación de ventas para pagos provisionales y declaraciones anuales."
+  },
+  {
+    iconName: "RefreshCw",
+    title: "Actualizaciones Constantes",
+    description: "El sistema se adapta a las necesidades de usuarios y las mejoras se aplican sin costo adicional."
+  },
+  {
+    iconName: "Globe",
+    title: "Acceso Universal",
+    description: "Funciona en cualquier computadora o dispositivo móvil con acceso a Internet."
+  }
+];
+---
+
+<section id="beneficios" class="section-padding gradient-benefits">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 
+        class="font-bold text-3xl md:text-4xl mb-4 animate-fade-in-up"
+        data-animate="fade-in-up"
+      >
+        Beneficios para tu Práctica Profesional
+      </h2>
+      <p 
+        class="text-lg max-w-3xl mx-auto animate-fade-in"
+        data-animate="fade-in"
+        data-delay="200"
+      >
+        Descubre cómo AuditaCFDI transforma la manera en que gestionas la información fiscal.
+      </p>
+    </div>
+
+    <div 
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 benefits-grid"
+      data-animate="stagger-children"
+    >
+      {benefitsList.map((benefit, index) => (
+        <div 
+          class="benefit-card bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300"
+          data-animate="fade-in-up"
+          data-delay={index * 50}
+        >
+          <div class="bg-primary text-white rounded-full p-3 mb-4 inline-flex icon-container">
+            <FeatureIcon client:load iconName={benefit.iconName} className="h-5 w-5" />
+          </div>
+          <h3 class="font-semibold text-xl mb-2 text-foreground">{benefit.title}</h3>
+          <p class="text-gray-600">{benefit.description}</p>
+        </div>
+      ))}
+    </div>
+
+    <div class="flex flex-col md:flex-row items-center mb-12 info-section">
+      <div 
+        class="md:w-1/2 md:pr-10 mb-10 md:mb-0 image-container"
+        data-animate="fade-in-scale"
+      >
+        <img 
+          src="https://images.unsplash.com/photo-1554224155-6726b3ff858f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2070&q=80" 
+          alt="Contador profesional utilizando AuditaCFDI" 
+          class="rounded-xl shadow-xl w-full h-auto"
+          loading="lazy"
+        />
+      </div>
+      <div class="md:w-1/2">
+        <div 
+          class="mb-6 section-header"
+          data-animate="fade-in-up"
+        >
+          <h3 class="font-bold text-2xl mb-4 text-foreground">Más información</h3>
+          <p class="text-lg mb-6 text-muted-foreground">AuditaCFDI ofrece características únicas que lo hacen indispensable para la práctica contable moderna.</p>
+        </div>
+        <div class="space-y-4 additional-benefits">
+          {additionalBenefits.map((benefit, index) => (
+            <div 
+              class="flex items-start benefit-item"
+              data-animate="fade-in-left"
+              data-delay={index * 100}
+            >
+              <div class="bg-primary text-white rounded-full p-2 mr-4 mt-1 flex-shrink-0">
+                <FeatureIcon client:load iconName={benefit.iconName} className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 class="font-semibold text-lg mb-1 text-foreground">{benefit.title}</h3>
+                <p class="text-gray-600">{benefit.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+
+    <div 
+      class="bg-primary/10 p-6 rounded-xl border border-primary/20 mt-8 highlight-section"
+      data-animate="fade-in-up"
+    >
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-2/4 mb-4 md:mb-0">
+          <div class="flex items-center mb-3">
+            <FeatureIcon client:load iconName="History" className="h-6 w-6 text-primary mr-3" />
+            <h3 class="font-semibold text-xl text-foreground">Descarga TODO tu historial</h3>
+          </div>
+          <p class="mb-3 text-muted-foreground">Obtén automáticamente todos tus comprobantes fiscales de los últimos 5 años del SAT.</p>
+        </div>
+        <div class="md:w-2/4 text-center md:text-right">
+          <div class="flex items-center mb-3 md:justify-end">
+            <FeatureIcon client:load iconName="UserPlus" className="h-6 w-6 text-primary mr-3" />
+            <h3 class="font-semibold text-xl text-foreground">Usuarios adicionales</h3>
+          </div>
+          <p class="text-muted-foreground">Agrega más usuarios y asígnales diferentes empresas (RFC's).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .gradient-benefits {
+    background: linear-gradient(135deg, hsl(var(--muted)) 0%, hsl(var(--background)) 50%, hsl(var(--muted)) 100%);
+    position: relative;
+  }
+
+  .gradient-benefits::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 20%, hsl(var(--primary) / 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 70% 80%, hsl(var(--accent) / 0.05) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .benefit-card {
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transform: translateY(0);
+  }
+
+  .benefit-card:hover {
+    transform: translateY(-4px);
+    border-color: hsl(var(--primary) / 0.2);
+    box-shadow: 0 20px 40px -10px hsl(var(--primary) / 0.1);
+  }
+
+  .icon-container {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+    transition: all 0.3s ease;
+  }
+
+  .benefit-card:hover .icon-container {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px hsl(var(--primary) / 0.3);
+  }
+
+  .image-container img {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .image-container:hover img {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  .benefit-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.6s ease-out;
+  }
+
+  .benefit-item.animate-in {
+    animation: fadeInLeft 0.6s ease-out forwards;
+  }
+
+  .highlight-section {
+    background: hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary) / 0.2);
+    backdrop-filter: blur(10px);
+  }
+
+  /* Animaciones CSS */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  /* Delay classes */
+  [data-delay="200"] {
+    animation-delay: 0.2s;
+  }
+
+  /* Benefits grid animation */
+  .benefits-grid .benefit-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .benefits-grid .benefit-card:nth-child(1) { animation-delay: 0s; }
+  .benefits-grid .benefit-card:nth-child(2) { animation-delay: 0.05s; }
+  .benefits-grid .benefit-card:nth-child(3) { animation-delay: 0.1s; }
+  .benefits-grid .benefit-card:nth-child(4) { animation-delay: 0.15s; }
+  .benefits-grid .benefit-card:nth-child(5) { animation-delay: 0.2s; }
+  .benefits-grid .benefit-card:nth-child(6) { animation-delay: 0.25s; }
+
+  /* Additional benefits animation */
+  .additional-benefits .benefit-item:nth-child(1) { animation-delay: 0s; }
+  .additional-benefits .benefit-item:nth-child(2) { animation-delay: 0.1s; }
+  .additional-benefits .benefit-item:nth-child(3) { animation-delay: 0.2s; }
+  .additional-benefits .benefit-item:nth-child(4) { animation-delay: 0.3s; }
+  .additional-benefits .benefit-item:nth-child(5) { animation-delay: 0.4s; }
+  .additional-benefits .benefit-item:nth-child(6) { animation-delay: 0.5s; }
+
+  .image-container {
+    opacity: 1;
+    animation: fadeInScale 0.6s ease-out forwards;
+  }
+
+  .section-header {
+    opacity: 1;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .highlight-section {
+    opacity: 1;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    .benefits-grid {
+      gap: 1.5rem;
+    }
+
+    .info-section {
+      gap: 2rem;
+    }
+  }
+
+  /* Respeta las preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .benefit-card,
+    .benefit-item,
+    .animate-fade-in-up,
+    .animate-fade-in,
+    .image-container,
+    .section-header,
+    .highlight-section {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .benefit-card,
+    .icon-container,
+    .image-container img {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Intersection Observer para activar animaciones cuando entran en vista
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in-view');
+          
+          // Para elementos con stagger children
+          if (entry.target.hasAttribute('data-animate')) {
+            const animationType = entry.target.getAttribute('data-animate');
+            
+            if (animationType === 'stagger-children') {
+              const children = entry.target.querySelectorAll('.benefit-card');
+              children.forEach((child, index) => {
+                setTimeout(() => {
+                  (child as HTMLElement).style.animationPlayState = 'running';
+                  (child as HTMLElement).style.opacity = '1';
+                }, index * 50);
+              });
+            }
+          }
+
+          // Activar animaciones específicas
+          if (entry.target.classList.contains('benefit-item')) {
+            (entry.target as HTMLElement).style.animationPlayState = 'running';
+            (entry.target as HTMLElement).style.opacity = '1';
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos animados
+    const animatedElements = document.querySelectorAll('[data-animate]');
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Observar específicamente los benefit items
+    const benefitItems = document.querySelectorAll('.benefit-item');
+    benefitItems.forEach(item => {
+      observer.observe(item);
+      // Inicializar estado
+      (item as HTMLElement).style.opacity = '0';
+      (item as HTMLElement).style.transform = 'translateX(-20px)';
+      (item as HTMLElement).style.animationPlayState = 'paused';
+    });
+
+    // Pausar animaciones inicialmente para elementos que necesitan intersection observer
+    const benefitCards = document.querySelectorAll('.benefit-card');
+    benefitCards.forEach(card => {
+      (card as HTMLElement).style.animationPlayState = 'paused';
+    });
+
+    // Activar animaciones para elementos que entran en vista
+    const imageContainer = document.querySelector('.image-container');
+    const sectionHeader = document.querySelector('.section-header');
+    const highlightSection = document.querySelector('.highlight-section');
+
+    if (imageContainer) observer.observe(imageContainer);
+    if (sectionHeader) observer.observe(sectionHeader);
+    if (highlightSection) observer.observe(highlightSection);
+
+    // Fallback: activar animaciones después de un tiempo si no se detecta intersection
+    setTimeout(() => {
+      benefitItems.forEach((item, index) => {
+        setTimeout(() => {
+          (item as HTMLElement).style.animationPlayState = 'running';
+          (item as HTMLElement).style.opacity = '1';
+          (item as HTMLElement).style.transform = 'translateX(0)';
+        }, index * 100);
+      });
+    }, 1000);
+  });
+</script>

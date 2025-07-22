@@ -1,0 +1,401 @@
+---
+import { FeatureIcon } from './ui/FeatureIcon.tsx';
+import { Button } from './ui/Button.tsx';
+
+// Datos de funcionalidades
+const functionalitiesData = [
+{
+    id: "reportes",
+    title: "REPORTES ESPECIALIZADOS",
+    description: "El programa se sincroniza en tiempo real con el web service del SAT, descargando el historial de todos los CFDIs emitidos y recibidos, lo que te permite poder tener una fotografía completa de toda la información que tiene el SAT de tu empresa. Sin importar que sistema utilizas para emitir CFDIs ya que descarga toda tu información directamente del SAT.",
+    iconName: "FileText",
+    imageUrl: "/images/reportes.webp"
+},
+  {
+    id: "sincronizacion",
+    title: "SINCRONIZACIÓN CON EL SAT EN TIEMPO REAL",
+    description: "Al crear la empresa se sincroniza con el web service del SAT descarga CFDIs y Metadata tanto emitidos como recibidos automáticamente desde el 2013 en 24 horas aproximadamente, una vez descargada toda la información histórica realiza la descarga de cada día permitiendo tener en tiempo real toda la información que tiene el SAT de tu empresa.",
+    iconName: "RefreshCw",
+    imageUrl: "/images/sync.webp"
+    
+  },
+  {
+    id: "efos",
+    title: "REVISIÓN DE EFOS DE TUS CFDIS EN TODA TU HISTORIA",
+    description: "Audita CFDI del SAT se sincroniza con la lista de EFOS del SAT para realizar la validación de forma automática de todos los CFDIs recibidos en toda tu historia. La mayor parte de los sistemas contables realiza la validación con EFOS a partir del 2015 que es cuando inició la obligación de la contabilidad electrónica y cuando se crearon los módulos para administrar los CFDIs y poder generar la contabilidad electrónica.",
+    iconName: "AlertTriangle",
+    imageUrl: "/images/revision.webp"
+  },
+  {
+    id: "errores",
+    title: "IDENTIFICA CFDIs CON ERRORES",
+    description: "Audita CFDI del SAT valida automáticamente que los CFDIs de Ingresos y Egresos emitidos y recibidos estén generados con base en las reglas del CFF, RMF y guías de llenado ya que de lo contrario puede generar multa para quien los emitió y comprometer la deducibilidad y acreditamiento de IVA para quien recibió. Es importante identificar errores de manera oportuna en el mes en curso, ya que si lo detectamos después de haber cerrado el periodo será más difícil que podamos y nos puedan cancelar y corregir el CFDI ya que modificaría el pago de impuestos y la contabilidad del mes.",
+    iconName: "SearchX",
+    imageUrl: "/images/identifica.webp"
+  },
+  {
+    id: "notificaciones",
+    title: "NOTIFICACIONES A CORREO ELECTRÓNICO DE USUARIOS",
+    description: "Selecciona a qué usuarios se les notificara a su correo electrónico si se detecta algún error de forma automática.",
+    iconName: "Mail",
+    imageUrl: "/images/notificaciones.webp"
+  },
+  {
+    id: "cancelados",
+    title: "IDENTIFICA CFDIs CANCELADOS EN MESES POSTERIORES",
+    description: "Audita CFDI del SAT descarga diariamente el Metadata del web service del SAT de los últimos tres años, lo que permite tener en tiempo real identificados todos los CFDIs cancelados en meses posteriores, que es la principal razón que puede generar diferencias entre la información que utilizas para generar los pagos provisionales históricos a lo que tiene de ingresos y egresos el SAT al día de hoy.",
+    iconName: "Calendar",
+    imageUrl: "/images/identifica3.webp"
+  },
+  {
+    id: "conciliacion",
+    title: "CONCILIACIÓN PAGOS PROVISIONALES CON INGRESOS DEL SAT",
+    description: "Audita CFDI del SAT descarga los pagos provisionales del web service del SAT y genera un reporte para poder conciliar los ingresos reportados en tus pagos provisionales y los ingresos que tiene el SAT al día de hoy, permitiendo identificar y corregir en caso de alguna diferencia.",
+    iconName: "BarChart3",
+    imageUrl: "/images/conciliacion.webp"
+  }
+];
+---
+
+<section id="funcionalidades" class="section-padding py-20 bg-gradient-to-b from-gray-50 to-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16 section-header">
+      <h2 
+        class="font-bold text-4xl md:text-5xl mb-6 text-gray-800 animate-fade-in-up"
+        data-animate="fade-in-up"
+      >
+        Funcionalidades Potentes
+      </h2>
+      <p 
+        class="text-lg md:text-xl max-w-3xl mx-auto text-gray-600 animate-fade-in"
+        data-animate="fade-in"
+        data-delay="200"
+      >
+        Descubre las herramientas avanzadas que Audita CFDI pone a tu disposición para optimizar tu trabajo fiscal.
+      </p>
+    </div>
+
+    <div class="space-y-16 functionalities-container">
+      {functionalitiesData.map((functionality, index) => (
+        <div 
+          class="functionality-card bg-white rounded-xl shadow-lg overflow-hidden"
+          data-animate="fade-in-up"
+          data-delay={index * 100}
+        >
+          <div class={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}>
+            <div class="md:w-1/2 p-8 md:p-10 flex flex-col justify-center">
+              <div class="flex items-start mb-6">
+                <div class="bg-green-50 p-4 rounded-full mr-4 shadow-sm icon-container">
+                  <FeatureIcon client:load iconName={functionality.iconName} className="h-10 w-10 text-green-600" />
+                </div>
+                <h3 class="font-bold text-xl md:text-2xl text-green-700 pt-2">
+                  {functionality.title}
+                </h3>
+              </div>
+              <p class="text-gray-600 text-lg leading-relaxed">
+                {functionality.description}
+              </p>
+            </div>
+            <div class="md:w-1/2 bg-gray-50">
+              <div class="h-full flex items-center justify-center p-6">
+                <img
+                  src={functionality.imageUrl}
+                  alt={functionality.title}
+                  class="w-full h-auto object-cover rounded-lg shadow-md transition-all duration-300 hover:shadow-xl hover:scale-105"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Funcionalidad adicional -->
+    <div 
+      class="mt-12 bg-white rounded-xl shadow-lg p-8 additional-functionality"
+      data-animate="fade-in-up"
+    >
+      <div class="flex items-start mb-6">
+        <div class="bg-green-50 p-4 rounded-full mr-4 shadow-sm">
+          <FeatureIcon client:load iconName="LineChart" className="h-10 w-10 text-green-600" />
+        </div>
+        <h3 class="font-bold text-xl md:text-2xl text-green-700 pt-2">
+          INGRESOS Y GASTOS CON INFORMACIÓN DEL SAT
+        </h3>
+      </div>
+      <p class="text-gray-600 text-lg leading-relaxed">
+        También muestra los ingresos, gastos y compras por año y por mes que tiene el SAT al día de hoy lo cual permite conciliar con tus pagos provisionales e identificar alguna diferencia provocada principalmente por CFDIs cancelados en meses posteriores.
+      </p>
+    </div>
+
+    <!-- Call to Action -->
+    <div 
+      class="text-center mt-20 cta-section"
+      data-animate="fade-in-up"
+    >
+      <a href="#prueba-gratuita">
+        <Button 
+          client:load 
+          size="lg" 
+          className="bg-green-600 hover:bg-green-700 text-white text-lg px-8 py-6 rounded-full shadow-lg transform transition hover:scale-105 hover:shadow-xl inline-flex items-center"
+        >
+          Solicitar prueba gratuita
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 ml-2" viewBox="0 0 20 20" fill="currentColor">
+            <path fill-rule="evenodd" d="M10.293 5.293a1 1 0 011.414 0l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414-1.414L12.586 11H5a1 1 0 110-2h7.586l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+          </svg>
+        </Button>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .functionality-card {
+    border: 1px solid hsl(var(--border));
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .functionality-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+  }
+
+  .icon-container {
+    background: rgb(240, 253, 244);
+    transition: all 0.3s ease;
+  }
+
+  .functionality-card:hover .icon-container {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(34, 197, 94, 0.2);
+  }
+
+  .functionality-card img {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .functionality-card:hover img {
+    transform: scale(1.05);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.2);
+  }
+
+  .additional-functionality {
+    border: 1px solid hsl(var(--border));
+    transition: all 0.3s ease;
+    opacity: 1;
+  }
+
+  .additional-functionality:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Animaciones CSS */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 1;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  /* Delay classes */
+  [data-delay="200"] {
+    animation-delay: 0.2s;
+  }
+
+  /* Staggered animations for functionality cards */
+  .functionalities-container .functionality-card:nth-child(1) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0s; 
+  }
+  .functionalities-container .functionality-card:nth-child(2) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.1s; 
+  }
+  .functionalities-container .functionality-card:nth-child(3) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.2s; 
+  }
+  .functionalities-container .functionality-card:nth-child(4) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.3s; 
+  }
+  .functionalities-container .functionality-card:nth-child(5) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.4s; 
+  }
+  .functionalities-container .functionality-card:nth-child(6) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.5s; 
+  }
+  .functionalities-container .functionality-card:nth-child(7) { 
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.6s; 
+  }
+
+  .additional-functionality {
+    animation: fadeInUp 0.7s ease-out forwards;
+    animation-delay: 0.7s;
+  }
+
+  .cta-section {
+    opacity: 1;
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: 0.8s;
+  }
+
+  /* Background gradient */
+  section {
+    background: linear-gradient(to bottom, #f9fafb, #ffffff);
+    position: relative;
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 30%, rgba(34, 197, 94, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(34, 197, 94, 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    .functionality-card {
+      margin-bottom: 2rem;
+    }
+
+    .functionality-card .flex {
+      flex-direction: column !important;
+    }
+
+    .functionality-card h3 {
+      font-size: 1.25rem;
+      line-height: 1.4;
+    }
+
+    .functionality-card p {
+      font-size: 1rem;
+    }
+  }
+
+  /* Respeta las preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .functionality-card,
+    .additional-functionality,
+    .animate-fade-in-up,
+    .animate-fade-in,
+    .cta-section {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .functionality-card,
+    .icon-container,
+    .functionality-card img,
+    .additional-functionality {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Intersection Observer para activar animaciones cuando entran en vista
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in-view');
+          
+          // Activar animaciones específicas
+          if (entry.target.classList.contains('functionality-card')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          }
+
+          if (entry.target.classList.contains('additional-functionality')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          }
+
+          if (entry.target.classList.contains('cta-section')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos animados
+    const functionalityCards = document.querySelectorAll('.functionality-card');
+    const additionalFunctionality = document.querySelector('.additional-functionality');
+    const ctaSection = document.querySelector('.cta-section');
+    const sectionHeader = document.querySelector('.section-header');
+
+    functionalityCards.forEach(card => {
+      observer.observe(card);
+    });
+
+    if (additionalFunctionality) observer.observe(additionalFunctionality);
+    if (ctaSection) observer.observe(ctaSection);
+    if (sectionHeader) observer.observe(sectionHeader);
+
+    // Smooth scroll para los enlaces internos
+    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    internalLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href') || '');
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+  });
+</script>

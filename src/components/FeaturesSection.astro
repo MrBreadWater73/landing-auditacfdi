@@ -1,0 +1,221 @@
+---
+import { FeatureIcon } from './ui/FeatureIcon.tsx';
+
+const features = [
+  {
+    iconName: "Search",
+    title: "Verificación Masiva",
+    description: "Audita cientos de facturas en segundos, identificando inconsistencias y errores de forma automática."
+  },
+  {
+    iconName: "FileText",
+    title: "Validación Fiscal",
+    description: "Verifica que los CFDI cumplan con todos los requisitos legales y normativos vigentes del SAT."
+  },
+  {
+    iconName: "BarChart2",
+    title: "Reportes Detallados",
+    description: "Genera informes personalizados con datos relevantes para tu análisis contable y fiscal."
+  },
+  {
+    iconName: "Download",
+    title: "Descarga Automática",
+    description: "Obtén XML y PDF directamente del portal del SAT con un solo clic, sin necesidad de ingresar manualmente."
+  },
+  {
+    iconName: "AlertTriangle",
+    title: "Alertas Inteligentes",
+    description: "Recibe notificaciones sobre facturas canceladas, no pagadas o con irregularidades detectadas."
+  },
+  {
+    iconName: "RefreshCw",
+    title: "Actualización Constante",
+    description: "Sistema actualizado permanentemente con las últimas disposiciones fiscales y cambios normativos del SAT."
+  }
+];
+---
+
+<section id="caracteristicas" class="section-padding bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 
+        class="font-bold text-3xl md:text-4xl mb-4 animate-fade-in-up"
+        data-animate="fade-in-up"
+      >
+        Características Principales
+      </h2>
+      <p 
+        class="text-lg max-w-3xl mx-auto animate-fade-in"
+        data-animate="fade-in"
+        data-delay="200"
+      >
+        AuditaCFDI ofrece herramientas avanzadas para simplificar la gestión fiscal y maximizar tu productividad.
+      </p>
+    </div>
+
+    <div 
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 features-grid"
+      data-animate="stagger-children"
+    >
+      {features.map((feature, index) => (
+        <div 
+          class="feature-card bg-neutral-50 rounded-lg p-6 shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1"
+          data-animate="fade-in-up"
+          data-delay={index * 100}
+        >
+          <div class="text-primary mb-4 feature-icon">
+            <FeatureIcon client:load iconName={feature.iconName} className="h-8 w-8" />
+          </div>
+          <h3 class="font-semibold text-xl mb-3 text-foreground">{feature.title}</h3>
+          <p class="text-muted-foreground">{feature.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .feature-card {
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--card));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .feature-card:hover {
+    border-color: hsl(var(--primary) / 0.2);
+    box-shadow: 0 10px 40px -10px hsl(var(--primary) / 0.1);
+  }
+
+  .feature-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 0.75rem;
+    background: hsl(var(--primary) / 0.1);
+    color: hsl(var(--primary));
+    margin-bottom: 1rem;
+  }
+
+  /* Animaciones CSS */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 0;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 0;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  /* Delay classes */
+  [data-delay="200"] {
+    animation-delay: 0.2s;
+  }
+
+  /* Feature cards animation */
+  .features-grid .feature-card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .features-grid .feature-card:nth-child(1) { animation-delay: 0s; }
+  .features-grid .feature-card:nth-child(2) { animation-delay: 0.1s; }
+  .features-grid .feature-card:nth-child(3) { animation-delay: 0.2s; }
+  .features-grid .feature-card:nth-child(4) { animation-delay: 0.3s; }
+  .features-grid .feature-card:nth-child(5) { animation-delay: 0.4s; }
+  .features-grid .feature-card:nth-child(6) { animation-delay: 0.5s; }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    .features-grid {
+      gap: 1.5rem;
+    }
+  }
+
+  /* Respeta las preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .feature-card,
+    .animate-fade-in-up,
+    .animate-fade-in {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .feature-card {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Intersection Observer para activar animaciones cuando entran en vista
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in-view');
+          
+          // Para elementos con stagger children
+          if (entry.target.hasAttribute('data-animate') && 
+              entry.target.getAttribute('data-animate') === 'stagger-children') {
+            const children = entry.target.querySelectorAll('.feature-card');
+            children.forEach((child, index) => {
+              setTimeout(() => {
+                (child as HTMLElement).style.animationPlayState = 'running';
+              }, index * 100);
+            });
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos animados
+    const animatedElements = document.querySelectorAll('[data-animate]');
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Pausar animaciones inicialmente para elementos que necesitan intersection observer
+    const featureCards = document.querySelectorAll('.feature-card');
+    featureCards.forEach(card => {
+      (card as HTMLElement).style.animationPlayState = 'paused';
+    });
+  });
+</script>

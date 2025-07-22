@@ -1,0 +1,506 @@
+---
+import { FeatureIcon } from './ui/FeatureIcon.tsx';
+import { Button } from './ui/Button.tsx';
+
+const pricingPlans = [
+  {
+    name: "1 Usuario, 1 RFC",
+    originalPrice: "4,290",
+    discountPrice: "3,861",
+    features: [
+      { included: true, text: "Verificación masiva de CFDI" },
+      { included: true, text: "Validación contra el SAT" },
+      { included: true, text: "Reportes profesionales completos" },
+      { included: true, text: "Soporte por correo, teléfono y chat" },
+      { included: true, text: "1 RFC incluido" }
+    ],
+    popular: false
+  },
+  {
+    name: "1 Usuario, 3 RFC's",
+    originalPrice: "5,990",
+    discountPrice: "5,391",
+    features: [
+      { included: true, text: "Verificación masiva de CFDI" },
+      { included: true, text: "Validación contra el SAT" },
+      { included: true, text: "Reportes profesionales completos" },
+      { included: true, text: "Soporte por correo, teléfono y chat" },
+      { included: true, text: "3 RFC's incluidos" }
+    ],
+    popular: true
+  },
+  {
+    name: "3 Usuarios, 10 RFC's",
+    originalPrice: "10,390",
+    discountPrice: "9,351",
+    features: [
+      { included: true, text: "Verificación masiva de CFDI" },
+      { included: true, text: "Validación avanzada contra el SAT" },
+      { included: true, text: "Reportes profesionales completos" },
+      { included: true, text: "Soporte por correo, teléfono y chat" },
+      { included: true, text: "10 RFC's incluidos" }
+    ],
+    popular: false
+  },
+  {
+    name: "5 Usuarios, RFC's Ilimitados",
+    originalPrice: "15,690",
+    discountPrice: "14,121",
+    features: [
+      { included: true, text: "Verificación masiva de CFDI" },
+      { included: true, text: "Validación avanzada contra el SAT" },
+      { included: true, text: "Reportes profesionales completos" },
+      { included: true, text: "Soporte por correo, teléfono y chat" },
+      { included: true, text: "RFC's ilimitados" }
+    ],
+    popular: false
+  }
+];
+
+const additionalOption = {
+  name: "1 Usuario adicional",
+  originalPrice: "1,990",
+  discountPrice: "1,791",
+  description: "Amplía tu licencia con usuarios adicionales según tus necesidades"
+};
+---
+
+<section id="precios" class="section-padding bg-white">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+      <h2 
+        class="font-bold text-3xl md:text-4xl mb-4 animate-fade-in-up"
+        data-animate="fade-in-up"
+      >
+        Licencias Audita CFDI
+      </h2>
+      <p 
+        class="text-lg max-w-3xl mx-auto text-muted-foreground animate-fade-in"
+        data-animate="fade-in"
+        data-delay="200"
+      >
+        Elige el plan que mejor se ajuste a tus necesidades o las de tu despacho. La licencia se paga de forma anual.
+      </p>
+      
+      <div 
+        class="mt-6 inline-block discount-banner"
+        data-animate="fade-in-scale"
+        data-delay="300"
+      >
+        <div class="bg-secondary/10 border border-secondary text-secondary px-6 py-3 rounded-lg flex items-center">
+          <FeatureIcon client:load iconName="Tag" className="h-5 w-5 mr-2" />
+          <span class="font-medium">¡Aprovecha el 10% de descuento exclusivo de ContadorMx durante 2025!</span>
+        </div>
+      </div>
+    </div>
+
+    <div 
+      class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12 pricing-grid"
+      data-animate="stagger-children"
+    >
+      {pricingPlans.map((plan, index) => (
+        <div 
+          class={`pricing-card border-2 ${plan.popular ? 'border-primary' : 'border-gray-200'} rounded-xl p-6 flex flex-col bg-white shadow-lg relative transition-all duration-300 hover:shadow-xl hover:-translate-y-1`}
+          data-animate="fade-in-up"
+          data-delay={index * 100}
+        >
+          {plan.popular && (
+            <div class="absolute top-0 right-0 bg-primary text-primary-foreground py-1 px-4 rounded-bl-lg rounded-tr-lg text-sm font-medium">
+              MÁS POPULAR
+            </div>
+          )}
+          <div class="mb-4">
+            <h3 class="font-bold text-xl mb-2 text-foreground">{plan.name}</h3>
+          </div>
+          <div class="mb-6">
+            <div class="flex items-center gap-2 mb-1">
+              <span class="text-sm text-gray-500 line-through">${plan.originalPrice}</span>
+              <span class="bg-secondary text-secondary-foreground text-xs px-2 py-1 rounded-full font-medium">-10%</span>
+            </div>
+            <div class="flex items-baseline">
+              <span class="font-bold text-3xl text-primary">${plan.discountPrice}</span>
+            </div>
+            <p class="text-sm text-muted-foreground mt-1">Precio único por licencia</p>
+          </div>
+          <ul class="mb-6 flex-grow space-y-3">
+            {plan.features.map((feature, featureIndex) => (
+              <li class="flex items-start text-sm">
+                <FeatureIcon client:load iconName="Check" className="h-4 w-4 text-secondary flex-shrink-0 mt-0.5 mr-2" />
+                <span class="text-muted-foreground">{feature.text}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="https://contadormx.net/producto/audita-cfdi-del-sat-herramienta-para-contadores-despachos-y-fiscalistas/" target="_blank" rel="noopener noreferrer">
+            <Button 
+              client:load
+              variant={plan.popular ? "default" : "outline"} 
+              size="sm"
+              className="w-full transition-all duration-300"
+            >
+              Solicitar
+            </Button>
+          </a>
+        </div>
+      ))}
+    </div>
+
+    <div 
+      class="bg-neutral-50 p-6 rounded-xl mb-12 additional-option"
+      data-animate="fade-in-up"
+    >
+      <div class="flex flex-col md:flex-row md:items-center justify-between">
+        <div>
+          <h3 class="font-semibold text-xl mb-2 text-foreground">{additionalOption.name}</h3>
+          <p class="text-muted-foreground mb-4 md:mb-0">
+            {additionalOption.description}
+          </p>
+        </div>
+        <div class="flex flex-col items-start md:items-end">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-sm text-gray-500 line-through">${additionalOption.originalPrice}</span>
+            <span class="bg-secondary text-secondary-foreground text-xs px-2 py-1 rounded-full font-medium">-10%</span>
+          </div>
+          <span class="font-bold text-2xl text-primary mb-4">${additionalOption.discountPrice}</span>
+          <a href="https://contadormx.net/producto/audita-cfdi-del-sat-herramienta-para-contadores-despachos-y-fiscalistas/" target="_blank" rel="noopener noreferrer">
+            <Button client:load variant="outline" size="sm">
+              Solicitar usuario adicional
+            </Button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .pricing-card {
+    border: 2px solid hsl(var(--border));
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.1);
+  }
+
+  .pricing-card[class*="border-primary"] {
+    border-color: hsl(var(--primary));
+    box-shadow: 0 8px 30px -5px hsl(var(--primary) / 0.2);
+  }
+
+  .pricing-card[class*="border-primary"]:hover {
+    box-shadow: 0 20px 40px -10px hsl(var(--primary) / 0.3);
+  }
+
+  .discount-banner {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  .additional-option {
+    border: 1px solid hsl(var(--border));
+    background: hsl(var(--muted) / 0.3);
+    transition: all 0.3s ease;
+    opacity: 1;
+  }
+
+  .additional-option:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Animaciones CSS */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 1;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  .discount-banner {
+    animation: fadeInScale 0.5s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  /* Delay classes */
+  [data-delay="200"] {
+    animation-delay: 0.2s;
+  }
+
+  [data-delay="300"] {
+    animation-delay: 0.3s;
+  }
+
+  /* Pricing grid animation */
+  .pricing-grid .pricing-card {
+    opacity: 1;
+    transform: translateY(0);
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+
+  .pricing-grid .pricing-card:nth-child(1) { animation-delay: 0s; }
+  .pricing-grid .pricing-card:nth-child(2) { animation-delay: 0.1s; }
+  .pricing-grid .pricing-card:nth-child(3) { animation-delay: 0.2s; }
+  .pricing-grid .pricing-card:nth-child(4) { animation-delay: 0.3s; }
+
+  .additional-option {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+
+  /* Badge styling */
+  .pricing-card .bg-secondary {
+    background: hsl(var(--secondary));
+    color: hsl(var(--secondary-foreground));
+  }
+
+  /* Popular plan styling */
+  .pricing-card .bg-primary {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
+  }
+
+  /* Button enhancements */
+  .pricing-card button {
+    transition: all 0.3s ease;
+  }
+
+  .pricing-card:hover button {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px hsl(var(--primary) / 0.3);
+  }
+
+  /* Links styling */
+  .pricing-card a,
+  .additional-option a {
+    text-decoration: none;
+    display: block;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 1024px) {
+    .pricing-grid {
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 3rem 0;
+    }
+    
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .discount-banner {
+      margin: 0 1rem;
+    }
+
+    .discount-banner div {
+      flex-direction: column;
+      text-align: center;
+      gap: 0.5rem;
+    }
+
+    .additional-option {
+      text-align: center;
+    }
+
+    .additional-option .flex {
+      flex-direction: column;
+      align-items: center !important;
+      gap: 1rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .pricing-card {
+      padding: 1.5rem;
+    }
+
+    .pricing-card h3 {
+      font-size: 1.125rem;
+    }
+
+    .pricing-card .text-3xl {
+      font-size: 2rem;
+    }
+  }
+
+  /* Focus states para accesibilidad */
+  .pricing-card a:focus,
+  .additional-option a:focus {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  /* Respeta las preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .pricing-card,
+    .additional-option,
+    .discount-banner,
+    .animate-fade-in-up,
+    .animate-fade-in {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .pricing-card,
+    .additional-option,
+    .pricing-card button {
+      transition: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Intersection Observer para activar animaciones cuando entran en vista
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in-view');
+          
+          // Para elementos con stagger children
+          if (entry.target.hasAttribute('data-animate')) {
+            const animationType = entry.target.getAttribute('data-animate');
+            
+            if (animationType === 'stagger-children') {
+              const children = entry.target.querySelectorAll('.pricing-card');
+              children.forEach((child, index) => {
+                setTimeout(() => {
+                  (child as HTMLElement).style.opacity = '1';
+                  (child as HTMLElement).style.transform = 'translateY(0)';
+                }, index * 100);
+              });
+            }
+          }
+
+          // Activar animaciones específicas
+          if (entry.target.classList.contains('pricing-card')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          }
+
+          if (entry.target.classList.contains('additional-option')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          }
+
+          if (entry.target.classList.contains('discount-banner')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'scale(1)';
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos animados
+    const pricingCards = document.querySelectorAll('.pricing-card');
+    const additionalOption = document.querySelector('.additional-option');
+    const discountBanner = document.querySelector('.discount-banner');
+    const animatedElements = document.querySelectorAll('[data-animate]');
+
+    pricingCards.forEach(card => {
+      observer.observe(card);
+    });
+
+    if (additionalOption) observer.observe(additionalOption);
+    if (discountBanner) observer.observe(discountBanner);
+    
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Enhanced hover effects para las pricing cards
+    pricingCards.forEach(card => {
+      card.addEventListener('mouseenter', () => {
+        const button = card.querySelector('button');
+        if (button) {
+          (button as HTMLElement).style.transform = 'translateY(-2px)';
+        }
+      });
+
+      card.addEventListener('mouseleave', () => {
+        const button = card.querySelector('button');
+        if (button) {
+          (button as HTMLElement).style.transform = 'translateY(0)';
+        }
+      });
+    });
+
+    // Analytics tracking para los clicks en pricing (opcional)
+    const trackPricingClick = (planName: string) => {
+      console.log(`Pricing click:`, planName);
+      // Aquí puedes agregar tracking de Google Analytics o similar
+    };
+
+    // Event listeners para tracking
+    pricingCards.forEach((card, index) => {
+      const link = card.querySelector('a');
+      if (link) {
+        link.addEventListener('click', () => {
+          const planName = card.querySelector('h3')?.textContent || `Plan ${index + 1}`;
+          trackPricingClick(planName);
+        });
+      }
+    });
+
+    // Tracking para usuario adicional
+    const additionalLink = additionalOption?.querySelector('a');
+    if (additionalLink) {
+      additionalLink.addEventListener('click', () => {
+        trackPricingClick('Usuario Adicional');
+      });
+    }
+  });
+</script>

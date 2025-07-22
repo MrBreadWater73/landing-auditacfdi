@@ -1,0 +1,729 @@
+---
+import { FeatureIcon } from "./ui/FeatureIcon.tsx";
+import { Button } from "./ui/Button.tsx";
+import { Input } from "./ui/Input.tsx";
+import { Label } from "./ui/Label.tsx";
+
+const benefits = [
+  "Acceso completo a todas las funciones",
+  "Soporte personalizado durante tu prueba",
+  "Sin compromiso de permanencia",
+  "Configuración sencilla en menos de 5 minutos",
+];
+---
+
+<section id="prueba-gratuita" class="section-padding gradient-cta text-white">
+  <div class="container mx-auto px-4">
+    <div class="flex flex-col md:flex-row items-center">
+      <div
+        class="md:w-1/2 md:pr-10 mb-10 md:mb-0 content-section"
+        data-animate="fade-in-left"
+      >
+        <h2 class="font-bold text-3xl md:text-4xl mb-4 animate-fade-in-up">
+          Prueba AuditaCFDI sin compromiso
+        </h2>
+        <p class="text-lg mb-6 animate-fade-in" data-delay="200">
+          Obtén acceso completo a todas las funcionalidades durante 10 días. Sin
+          tarjeta de crédito requerida.
+        </p>
+        <ul
+          class="mb-8 space-y-3 benefits-list"
+          data-animate="stagger-children"
+        >
+          {
+            benefits.map((benefit, index) => (
+              <li
+                class="flex items-start benefit-item"
+                data-animate="fade-in-left"
+                data-delay={index * 100}
+              >
+                <FeatureIcon
+                  client:load
+                  iconName="CheckCircle"
+                  className="mr-3 mt-1 h-5 w-5 flex-shrink-0"
+                />
+                <span>{benefit}</span>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div
+        class="md:w-1/2 bg-white p-8 rounded-xl shadow-xl form-section"
+        data-animate="fade-in-right"
+      >
+        <h3 class="font-semibold text-xl text-foreground mb-6">
+          Comienza tu prueba gratuita hoy
+        </h3>
+        <form id="trial-form" class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div class="space-y-2">
+              <Label client:load htmlFor="firstName" className="text-foreground"
+                >Nombre</Label
+              >
+              <Input
+                client:load
+                id="firstName"
+                name="firstName"
+                placeholder="Tu nombre"
+                required
+                className="border-input"
+              />
+              <p
+                class="text-sm text-destructive hidden error-message"
+                data-field="firstName"
+              >
+              </p>
+            </div>
+
+            <div class="space-y-2">
+              <Label client:load htmlFor="lastName" className="text-foreground"
+                >Apellido</Label
+              >
+              <Input
+                client:load
+                id="lastName"
+                name="lastName"
+                placeholder="Tu apellido"
+                required
+                className="border-input"
+              />
+              <p
+                class="text-sm text-destructive hidden error-message"
+                data-field="lastName"
+              >
+              </p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <Label client:load htmlFor="email" className="text-foreground"
+              >Correo electrónico</Label
+            >
+            <Input
+              client:load
+              id="email"
+              name="email"
+              type="email"
+              placeholder="tucorreo@ejemplo.com"
+              required
+              className="border-input"
+            />
+            <p
+              class="text-sm text-destructive hidden error-message"
+              data-field="email"
+            >
+            </p>
+          </div>
+
+          <div class="space-y-2">
+            <Label client:load htmlFor="phone" className="text-foreground"
+              >Teléfono (10 dígitos)</Label
+            >
+            <Input
+              client:load
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="Tu teléfono"
+              className="border-input"
+              maxLength={10}
+            />
+          </div>
+
+          <div class="pt-2">
+            <Button
+              client:load
+              type="submit"
+              className="w-full submit-button"
+              id="submit-btn"
+            >
+              Solicitar prueba gratuita
+            </Button>
+          </div>
+
+          <p class="text-sm text-gray-500 text-center pt-2">
+            Al registrarte, aceptas nuestros
+            <a
+              href="https://contadormx.net/politicas/"
+              class="text-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              términos y condiciones
+            </a>
+            y
+            <a
+              href="https://contadormx.net/aviso-de-privacidad/"
+              class="text-primary hover:underline"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              política de privacidad
+            </a>.
+          </p>
+        </form>
+
+        <!-- Success Message -->
+        <div id="success-message" class="hidden">
+          <div class="text-center p-6">
+            <FeatureIcon
+              client:load
+              iconName="CheckCircle"
+              className="h-16 w-16 text-secondary mx-auto mb-4"
+            />
+            <h4 class="font-semibold text-xl text-foreground mb-2">
+              ¡Registro exitoso!
+            </h4>
+            <p class="text-muted-foreground">
+              Te contactaremos pronto para iniciar tu prueba gratuita.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .gradient-cta {
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary)) 0%,
+      hsl(var(--primary)) 100%
+    );
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-cta::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+      135deg,
+      hsl(var(--primary) / 0.9) 0%,
+      hsl(var(--primary) / 0.8) 50%,
+      hsl(var(--primary) / 0.9) 100%
+    );
+    z-index: 1;
+  }
+
+  .gradient-cta > .container {
+    position: relative;
+    z-index: 2;
+  }
+
+  .form-section {
+    background: white;
+    border-radius: 0.75rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .form-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.3);
+  }
+
+  .content-section {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .benefit-item {
+    opacity: 1;
+    transform: translateX(0);
+    transition: all 0.3s ease;
+  }
+
+  .benefit-item:hover {
+    transform: translateX(4px);
+  }
+
+  /* Form styling */
+  .space-y-4 > * + * {
+    margin-top: 1rem;
+  }
+
+  .space-y-2 > * + * {
+    margin-top: 0.5rem;
+  }
+
+  .space-y-3 > * + * {
+    margin-top: 0.75rem;
+  }
+
+  .grid-cols-1 {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .gap-4 {
+    gap: 1rem;
+  }
+
+  /* Input validation styles */
+  .border-destructive {
+    border-color: hsl(var(--destructive)) !important;
+  }
+
+  .text-destructive {
+    color: hsl(var(--destructive));
+  }
+
+  .error-message {
+    font-size: 0.875rem;
+    margin-top: 0.25rem;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  /* Button states */
+  .submit-button {
+    transition: all 0.3s ease;
+  }
+
+  .submit-button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 8px 25px hsl(var(--primary) / 0.3);
+  }
+
+  .submit-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Success message styling */
+  #success-message {
+    background: white;
+    border-radius: 0.75rem;
+    margin-top: 1rem;
+  }
+
+  #success-message.show {
+    display: block;
+    animation: fadeInScale 0.5s ease-out forwards;
+  }
+
+  /* Animation classes */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInRight {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  /* Delay classes */
+  [data-delay="200"] {
+    animation-delay: 0.2s;
+  }
+
+  /* Benefits list animation */
+  .benefits-list .benefit-item {
+    opacity: 1;
+    animation: fadeInLeft 0.5s ease-out forwards;
+  }
+
+  .benefits-list .benefit-item:nth-child(1) {
+    animation-delay: 0s;
+  }
+  .benefits-list .benefit-item:nth-child(2) {
+    animation-delay: 0.1s;
+  }
+  .benefits-list .benefit-item:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .benefits-list .benefit-item:nth-child(4) {
+    animation-delay: 0.3s;
+  }
+
+  /* Content and form sections */
+  .content-section {
+    animation: fadeInLeft 0.6s ease-out forwards;
+  }
+
+  .form-section {
+    animation: fadeInRight 0.6s ease-out forwards;
+    animation-delay: 0.2s;
+  }
+
+  /* Links styling */
+  .text-primary {
+    color: hsl(var(--primary));
+  }
+
+  .hover\:underline:hover {
+    text-decoration: underline;
+  }
+
+  /* Responsive design */
+  @media (min-width: 640px) {
+    .sm\:grid-cols-2 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (min-width: 768px) {
+    .md\:w-1\/2 {
+      width: 50%;
+    }
+
+    .md\:pr-10 {
+      padding-right: 2.5rem;
+    }
+
+    .md\:mb-0 {
+      margin-bottom: 0;
+    }
+
+    .md\:flex-row {
+      flex-direction: row;
+    }
+
+    .md\:text-4xl {
+      font-size: 2.25rem;
+      line-height: 2.5rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 3rem 0;
+    }
+
+    .form-section {
+      padding: 1.5rem;
+    }
+
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .md\:text-4xl {
+      font-size: 2rem;
+      line-height: 2.25rem;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .grid-cols-1 {
+      grid-template-columns: 1fr;
+    }
+
+    .sm\:grid-cols-2 {
+      grid-template-columns: 1fr;
+    }
+
+    .gap-4 {
+      gap: 0.75rem;
+    }
+  }
+
+  /* Accessibility */
+  .submit-button:focus-visible {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  input:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+    border-color: hsl(var(--ring));
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .content-section,
+    .form-section,
+    .benefit-item,
+    .animate-fade-in-up,
+    .animate-fade-in,
+    .submit-button {
+      animation: none !important;
+      transition: none !important;
+      opacity: 1 !important;
+      transform: none !important;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const form = document.getElementById("trial-form") as HTMLFormElement;
+    const submitBtn = document.getElementById(
+      "submit-btn"
+    ) as HTMLButtonElement;
+    const successMessage = document.getElementById(
+      "success-message"
+    ) as HTMLElement;
+
+    // Form validation
+    const validateField = (field: HTMLInputElement): boolean => {
+      const errorElement = document.querySelector(
+        `[data-field="${field.name}"]`
+      ) as HTMLElement;
+      let isValid = true;
+      let errorMessage = "";
+
+      // Clear previous errors
+      field.classList.remove("border-destructive");
+      errorElement?.classList.add("hidden");
+
+      // Required fields validation
+      if (field.hasAttribute("required") && !field.value.trim()) {
+        isValid = false;
+        errorMessage = `${field.placeholder} es requerido`;
+      }
+
+      // Email validation
+      if (field.type === "email" && field.value) {
+        const emailRegex = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i;
+        if (!emailRegex.test(field.value)) {
+          isValid = false;
+          errorMessage = "Dirección de correo inválida";
+        }
+      }
+
+      // Show error if invalid
+      if (!isValid) {
+        field.classList.add("border-destructive");
+        if (errorElement) {
+          errorElement.textContent = errorMessage;
+          errorElement.classList.remove("hidden");
+        }
+      }
+
+      return isValid;
+    };
+
+    // Real-time validation
+    const inputs = form.querySelectorAll(
+      'input[required], input[type="email"]'
+    );
+    inputs.forEach((input) => {
+      const inputElement = input as HTMLInputElement;
+      inputElement.addEventListener("blur", () => validateField(inputElement));
+      inputElement.addEventListener("input", () => {
+        if (inputElement.classList.contains("border-destructive")) {
+          validateField(inputElement);
+        }
+      });
+    });
+
+    // Form submission
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      // Validate all fields
+      const allInputs = form.querySelectorAll(
+        "input"
+      ) as NodeListOf<HTMLInputElement>;
+      let isFormValid = true;
+
+      allInputs.forEach((input) => {
+        if (input.hasAttribute("required") || input.type === "email") {
+          if (!validateField(input)) {
+            isFormValid = false;
+          }
+        }
+      });
+
+      if (!isFormValid) {
+        return;
+      }
+
+      // Get form data
+      const formData = new FormData(form);
+      const data = {
+        firstName: formData.get("firstName") as string,
+        lastName: formData.get("lastName") as string,
+        email: formData.get("email") as string,
+        phone: (formData.get("phone") as string) || "",
+      };
+
+      // Show loading state
+      submitBtn.disabled = true;
+      submitBtn.textContent = "Procesando...";
+
+      try {
+        // Simulate API call (replace with actual endpoint)
+        await new Promise((resolve) => setTimeout(resolve, 1500));
+
+        // Show success message
+        form.style.display = "none";
+        successMessage.classList.remove("hidden");
+        successMessage.classList.add("show");
+
+        // Optional: Send to actual endpoint
+        // const response = await fetch('/api/trial-signup', {
+        //   method: 'POST',
+        //   headers: { 'Content-Type': 'application/json' },
+        //   body: JSON.stringify(data)
+        // });
+
+        console.log("Trial signup data:", data);
+
+        // Track conversion (optional)
+        //if (typeof gtag !== "undefined") {
+          //gtag("event", "conversion", {
+            //send_to: "AW-CONVERSION_ID/CONVERSION_LABEL",
+            //value: 1.0,
+            //currency: "MXN",
+          //});
+        //}
+
+      } catch (error) {
+        console.error("Error submitting form:", error);
+
+        // Show error message
+        alert("Hubo un problema al procesar tu solicitud. Intenta nuevamente.");
+
+        // Reset button
+        submitBtn.disabled = false;
+        submitBtn.textContent = "Solicitar prueba gratuita";
+      }
+    });
+
+    // Intersection Observer for animations
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate-in-view");
+
+          // Trigger stagger animations
+          if (entry.target.hasAttribute("data-animate")) {
+            const animationType = entry.target.getAttribute("data-animate");
+
+            if (animationType === "stagger-children") {
+              const children = entry.target.querySelectorAll(".benefit-item");
+              children.forEach((child, index) => {
+                setTimeout(() => {
+                  (child as HTMLElement).style.opacity = "1";
+                  (child as HTMLElement).style.transform = "translateX(0)";
+                }, index * 100);
+              });
+            }
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observe animated elements
+    const animatedElements = document.querySelectorAll("[data-animate]");
+    animatedElements.forEach((el) => observer.observe(el));
+
+    // Enhanced focus management
+    const focusableElements = form.querySelectorAll(
+      'input, button, select, textarea, [tabindex]:not([tabindex="-1"])'
+    );
+
+    // Keyboard navigation enhancement
+    form.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" && e.target !== submitBtn) {
+        e.preventDefault();
+        const currentIndex = Array.from(focusableElements).indexOf(
+          e.target as Element
+        );
+        const nextIndex = currentIndex + 1;
+        if (nextIndex < focusableElements.length) {
+          (focusableElements[nextIndex] as HTMLElement).focus();
+        }
+      }
+    });
+
+    // Auto-focus first input when section comes into view
+    const section = document.getElementById("prueba-gratuita");
+    if (section) {
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const firstInput = form.querySelector(
+                "input"
+              ) as HTMLInputElement;
+              if (firstInput && document.activeElement === document.body) {
+                setTimeout(() => firstInput.focus(), 500);
+              }
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      sectionObserver.observe(section);
+    }
+  });
+</script>

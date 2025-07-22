@@ -1,0 +1,337 @@
+---
+import { Button } from './ui/Button.tsx';
+---
+
+<section id="demostracion" class="section-padding bg-neutral-50">
+  <div class="container mx-auto px-4">
+    <div class="text-center mb-10">
+      <h2 
+        class="font-bold text-3xl md:text-4xl mb-4 animate-fade-in-up"
+        data-animate="fade-in-up"
+      >
+        Ver Demostración
+      </h2>
+      <p 
+        class="text-lg max-w-3xl mx-auto text-muted-foreground animate-fade-in"
+        data-animate="fade-in"
+        data-delay="200"
+      >
+        Mira cómo AuditaCFDI facilita tu trabajo de verificación fiscal.
+      </p>
+    </div>
+
+    <div 
+      class="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-xl video-container"
+      data-animate="fade-in-up"
+      data-delay="300"
+    >
+      <div class="relative pb-[56.25%] h-0 bg-gray-100">
+        <iframe 
+          class="absolute top-0 left-0 w-full h-full rounded-lg"
+          src="https://www.youtube.com/embed/qnfDOz3NCW4" 
+          title="AuditaCFDI demo video" 
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+    </div>
+
+    <div class="text-center mt-10 cta-container">
+      <p 
+        class="text-lg mb-6 text-muted-foreground animate-fade-in"
+        data-animate="fade-in"
+        data-delay="400"
+      >
+        Empieza a optimizar tu trabajo contable hoy mismo
+      </p>
+      <div 
+        class="cta-button"
+        data-animate="fade-in-up"
+        data-delay="500"
+      >
+        <a href="#prueba-gratuita">
+          <Button 
+            client:load 
+            size="lg"
+            className="bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-3 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+          >
+            Solicitar prueba gratuita
+          </Button>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .section-padding {
+    padding: 5rem 0;
+  }
+
+  .video-container {
+    opacity: 1;
+    transform: translateY(0);
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid hsl(var(--border));
+  }
+
+  .video-container:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.2);
+  }
+
+  .video-container iframe {
+    border: none;
+    border-radius: 0.5rem;
+  }
+
+  .cta-container {
+    opacity: 1;
+  }
+
+  .cta-button {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Animaciones CSS */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in-up {
+    opacity: 1;
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .animate-fade-in {
+    opacity: 1;
+    animation: fadeIn 0.6s ease-out forwards;
+  }
+
+  /* Delay classes */
+  [data-delay="200"] {
+    animation-delay: 0.2s;
+  }
+
+  [data-delay="300"] {
+    animation-delay: 0.3s;
+  }
+
+  [data-delay="400"] {
+    animation-delay: 0.4s;
+  }
+
+  [data-delay="500"] {
+    animation-delay: 0.5s;
+  }
+
+  /* Video container específico */
+  .video-container {
+    animation: fadeInUp 0.6s ease-out forwards;
+    animation-delay: 0.3s;
+  }
+
+  .cta-container p {
+    animation: fadeIn 0.5s ease-out forwards;
+    animation-delay: 0.4s;
+  }
+
+  .cta-button {
+    animation: fadeInUp 0.5s ease-out forwards;
+    animation-delay: 0.5s;
+  }
+
+  /* Background styling */
+  section {
+    background: hsl(var(--muted) / 0.3);
+    position: relative;
+  }
+
+  section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 50% 20%, hsl(var(--primary) / 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 20% 80%, hsl(var(--accent) / 0.02) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .section-padding {
+      padding: 3rem 0;
+    }
+
+    .video-container {
+      margin: 0 1rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    .cta-container p {
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .video-container {
+      margin: 0 0.5rem;
+      border-radius: 0.5rem;
+    }
+
+    .cta-container {
+      padding: 0 1rem;
+    }
+  }
+
+  /* Focus states para accesibilidad */
+  .video-container iframe:focus {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+  }
+
+  /* Mejoras para el botón CTA */
+  .cta-button a {
+    display: inline-block;
+    text-decoration: none;
+  }
+
+  .cta-button button {
+    box-shadow: 0 4px 14px 0 hsl(var(--primary) / 0.25);
+  }
+
+  .cta-button button:hover {
+    box-shadow: 0 6px 20px 0 hsl(var(--primary) / 0.35);
+  }
+
+  /* Loading state para el video */
+  .video-container .relative {
+    background: #f3f4f6;
+  }
+
+  /* Respeta las preferencias de movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .video-container,
+    .cta-container p,
+    .cta-button,
+    .animate-fade-in-up,
+    .animate-fade-in {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+    
+    .video-container,
+    .cta-button button {
+      transition: none;
+    }
+
+    .video-container .relative::before {
+      animation: none;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    // Intersection Observer para activar animaciones cuando entran en vista
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate-in-view');
+          
+          // Activar animaciones específicas
+          if (entry.target.classList.contains('video-container')) {
+            (entry.target as HTMLElement).style.opacity = '1';
+            (entry.target as HTMLElement).style.transform = 'translateY(0)';
+          }
+
+          if (entry.target.classList.contains('cta-container')) {
+            const elements = entry.target.querySelectorAll('[data-animate]');
+            elements.forEach((el, index) => {
+              setTimeout(() => {
+                (el as HTMLElement).style.opacity = '1';
+                (el as HTMLElement).style.transform = 'translateY(0)';
+              }, index * 100);
+            });
+          }
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos animados
+    const videoContainer = document.querySelector('.video-container');
+    const ctaContainer = document.querySelector('.cta-container');
+    const animatedElements = document.querySelectorAll('[data-animate]');
+
+    if (videoContainer) observer.observe(videoContainer);
+    if (ctaContainer) observer.observe(ctaContainer);
+    
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll para el enlace interno
+    const ctaLink = document.querySelector('a[href="#prueba-gratuita"]');
+    if (ctaLink) {
+      ctaLink.addEventListener('click', (e) => {
+        e.preventDefault();
+        const target = document.querySelector('#prueba-gratuita');
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    }
+
+    // Manejo del iframe para mejor performance
+    const iframe = document.querySelector('.video-container iframe');
+    if (iframe) {
+      // Simple load event
+      iframe.addEventListener('load', () => {
+        console.log('Video loaded successfully');
+      });
+    }
+
+    // Analytics tracking para el video (opcional)
+    const trackVideoInteraction = (action: string) => {
+      // Aquí puedes agregar tracking de Google Analytics o similar
+      console.log(`Video ${action}:`, 'AuditaCFDI Demo');
+    };
+
+    // Event listeners para tracking (opcional)
+    if (iframe) {
+      iframe.addEventListener('load', () => trackVideoInteraction('loaded'));
+    }
+  });
+</script>

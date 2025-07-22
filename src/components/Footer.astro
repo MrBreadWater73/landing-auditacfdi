@@ -1,0 +1,169 @@
+---
+import { Image } from 'astro:assets';
+import { FaLinkedin, FaYoutube, FaFacebook, FaInstagram } from 'react-icons/fa';
+import { FaXTwitter } from 'react-icons/fa6';
+import { AiFillTikTok } from 'react-icons/ai';
+import { 
+  FaCreditCard, 
+  FaCcAmex, 
+  FaCcMastercard, 
+  FaCcVisa, 
+  FaCcPaypal 
+} from 'react-icons/fa';
+import { SiStripe } from 'react-icons/si';
+---
+
+<footer class="bg-[#1e2937] text-white">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div>
+        <Image 
+          src="/images/logo.png" 
+          alt="ContadorMx Logo" 
+          class="h-12 mb-4 logo" 
+          width={200} 
+          height={48} 
+        />
+        <h3 class="text-lg font-semibold mb-4">SERVICIOS AL CLIENTE:</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="https://contadormx.net/soporte/" class="text-gray-300 hover:text-white">
+              Preguntas Frecuentes FAQS
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/instaladores-y-manuales/" class="text-gray-300 hover:text-white">
+              Instaladores y Manuales
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/como-levantar-un-pedido-en-contadormx/" class="text-gray-300 hover:text-white">
+              Como Comprar en ContadorMx
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/my-account/" class="text-gray-300 hover:text-white">
+              Tu Cuenta
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/contacto/" class="text-gray-300 hover:text-white">
+              Contacto
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">POLÍTICAS EN CONTADORMX</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="https://contadormx.net/politicas/" class="text-gray-300 hover:text-white">
+              Políticas de Venta
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/reembolsos-y-devoluciones/" class="text-gray-300 hover:text-white">
+              Devoluciones y Reembolsos
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/envios-y-entregas/" class="text-gray-300 hover:text-white">
+              Envíos y Entregas
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/porque-comprar-en-contadormx/" class="text-gray-300 hover:text-white">
+              ¿Porque comprar en ContadorMx?
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/aviso-de-privacidad/" class="text-gray-300 hover:text-white">
+              Aviso de Privacidad
+            </a>
+          </li>
+        </ul>
+      </div>
+      
+      <div>
+        <h3 class="text-lg font-semibold mb-4">MÁS INFORMACIÓN:</h3>
+        <ul class="space-y-2">
+          <li>
+            <a href="https://contadormx.net/quienes-somos/" class="text-gray-300 hover:text-white">
+              Quienes Somos
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/metodos-de-pago/" class="text-gray-300 hover:text-white">
+              Medios de Pago
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.net/actualizar-perfil-de-suscriptor/" class="text-gray-300 hover:text-white">
+              Suscribirme
+            </a>
+          </li>
+          <li>
+            <a href="https://contadormx.com/" class="text-gray-300 hover:text-white">
+              Blog
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-700 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+      <p class="text-gray-400 text-sm">
+        Derechos Reservados <span id="current-year"></span> © <span class="text-blue-400">ContadorMx</span>. Utilidades Digitales MX,
+        S.A. de C.V.
+      </p>
+      <div class="flex space-x-4 mt-4 md:mt-0">
+        <div class="payment-icon text-gray-300">
+          <FaCcAmex client:load className="h-8 w-12" />
+        </div>
+        <div class="payment-icon text-gray-300">
+          <FaCreditCard client:load className="h-8 w-12" />
+        </div>
+        <div class="payment-icon text-gray-300">
+          <FaCcPaypal client:load className="h-8 w-12" />
+        </div>
+        <div class="payment-icon text-gray-300">
+          <SiStripe client:load className="h-8 w-12" />
+        </div>
+        <div class="payment-icon text-gray-300">
+          <FaCcVisa client:load className="h-8 w-12" />
+        </div>
+        <div class="payment-icon text-gray-300">
+          <FaCcMastercard client:load className="h-8 w-12" />
+        </div>
+      </div>
+    </div>
+    <div class="flex space-x-3 items-center mt-4">
+      <a href="https://www.linkedin.com/company/contadormx/" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#0A66C2] transition-colors duration-200">
+        <FaLinkedin client:load className="h-5 w-5" />
+      </a>
+      <a href="https://www.youtube.com/c/ContadorMxBlog" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#FF0033] transition-colors duration-200">
+        <FaYoutube client:load className="h-5 w-5" />
+      </a>
+      <a href="https://x.com/contadormx" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#0F0F0F] transition-colors duration-200">
+        <FaXTwitter client:load className="h-5 w-5" />
+      </a>
+      <a href="https://www.facebook.com/ContadorMX" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:text-[#0866FF] transition-colors duration-200">
+        <FaFacebook client:load className="h-5 w-5" />
+      </a>
+      <a href="https://www.instagram.com/contadormx_net/" title="Instagram" target="_blank" rel="noopener noreferrer" class="text-gray-300 hover:bg-gradient-to-r from-orange-600 to-purple-700 rounded-md transition-colors duration-200">
+        <FaInstagram className="h-5 w-5" />
+      </a>
+      <a href="https://www.tiktok.com/@contadormx" target="_blank" rel="noopener noreferrer" class="text-gray-300 bg-none hover:bg-gradient-to-r from-cyan-500 to-red-600 rounded-md transition-colors duration-200">
+        <AiFillTikTok className="h-5 w-5" />
+      </a>
+    </div>
+  </div>
+</footer>
+<script>
+  // Set current year
+  const yearElement = document.getElementById('current-year');
+  if (yearElement) {
+    yearElement.textContent = String(new Date().getFullYear());
+  }
+</script>

@@ -1,0 +1,148 @@
+---
+import { Button } from './ui/Button.tsx';
+---
+
+<section class="pt-32 pb-20 gradient-hero">
+  <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+    <div 
+      class="md:w-1/2 md:pr-10 hero-text"
+      data-animate-in
+    >
+      <h1 class="font-bold text-4xl md:text-5xl text-foreground mb-4">
+        <span class="text-primary">AuditaCFDI</span> del SAT
+      </h1>
+      <h2 class="font-semibold text-2xl md:text-3xl mb-6">
+        La herramienta integral para contadores, despachos y fiscalistas
+      </h2>
+      <p class="text-lg mb-8">
+        Revoluciona la forma en que auditas, verificas y analizas los CFDI. 
+        Automatiza procesos, reduce errores y ahorra tiempo valioso en tus labores contables y fiscales.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4">
+        <a href="#prueba-gratuita">
+          <Button client:load size="lg" className="w-full sm:w-auto">
+            Prueba Gratuita
+          </Button>
+        </a>
+        <a href="#caracteristicas">
+          <Button client:load size="lg" variant="outline" className="w-full sm:w-auto">
+            Conoce más
+          </Button>
+        </a>
+      </div>
+    </div>
+    <div 
+      class="md:w-1/2 mt-10 md:mt-0 hero-image"
+      data-animate-in-delay
+    >
+      <img 
+        src="https://contadormx.net/wp-content/uploads/2020/12/Descarga-masiva-del-SAT-en-linea-webservice-ilimitado-contadormx.png" 
+        alt="Dashboard de AuditaCFDI mostrando análisis de facturas" 
+        class="rounded-xl shadow-xl w-full h-auto"
+        loading="eager"
+      />
+    </div>
+  </div>
+</section>
+
+<style>
+  .gradient-hero {
+    background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(var(--muted)) 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .gradient-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 20% 50%, hsl(var(--primary) / 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, hsl(var(--accent) / 0.1) 0%, transparent 50%);
+    pointer-events: none;
+  }
+
+  .hero-text {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.6s ease-out forwards;
+  }
+
+  .hero-image {
+    opacity: 0;
+    transform: scale(0.95);
+    animation: fadeInScale 0.6s ease-out 0.2s forwards;
+  }
+
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInScale {
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Animaciones mejoradas para dispositivos que prefieren movimiento reducido */
+  @media (prefers-reduced-motion: reduce) {
+    .hero-text,
+    .hero-image {
+      animation: fadeIn 0.3s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  }
+
+  /* Efectos adicionales para hover en la imagen */
+  .hero-image img {
+    transition: transform 0.3s ease-out, box-shadow 0.3s ease-out;
+  }
+
+  .hero-image:hover img {
+    transform: scale(1.02);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  }
+
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .gradient-hero {
+      padding-top: 6rem;
+      padding-bottom: 3rem;
+    }
+  }
+</style>
+
+<script>
+  // Intersection Observer para animaciones más avanzadas cuando el elemento entra en vista
+  document.addEventListener('DOMContentLoaded', () => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          (entry.target as HTMLElement).style.animationPlayState = 'running';
+        }
+      });
+    }, observerOptions);
+
+    // Observar elementos con animaciones
+    const animatedElements = document.querySelectorAll('[data-animate-in], [data-animate-in-delay]');
+    animatedElements.forEach(el => {
+      observer.observe(el);
+    });
+  });
+</script>

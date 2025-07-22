@@ -1,0 +1,126 @@
+---
+import { Button } from './ui/Button.tsx';
+import { FaBars, FaX } from 'react-icons/fa6';
+import { Image } from 'astro:assets';
+
+const navItems = [
+  { label: "Características", href: "#caracteristicas" },
+  { label: "Beneficios", href: "#beneficios" },
+  { label: "Funcionalidades", href: "#funcionalidades" },
+  { label: "Ver Demostración", href: "#demostracion" },
+  { label: "Precios", href: "#precios" },
+  { label: "Prueba Gratuita", href: "#prueba-gratuita", highlight: true },
+];
+---
+
+<header
+  id="main-header"
+  class="sticky top-0 z-50 w-full border-b transition-all duration-300 bg-gradient-to-r from-background/80 to-background/60 backdrop-blur-md py-4"
+>
+  <div class="container mx-auto px-4">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center">
+        <a href="/" class="flex items-center group">
+          <img
+            src="/images/logo.png"
+            alt="AuditaCFDI"
+            width="120"
+            height="60"
+            class="h-10 md:h-12 transition-transform duration-300 group-hover:scale-105"
+          />
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-1">
+        {navItems.map((item) => (
+          item.highlight ? (
+            <a
+              href={item.href}
+              class="inline-flex h-9 items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 hover:shadow-md focus:outline-none"
+            >
+              {item.label}
+            </a>
+          ) : (
+            <a
+              href={item.href}
+              class="group inline-flex h-9 w-max items-center justify-center rounded-md px-4 py-2 text-sm font-medium transition-all duration-200 hover:bg-accent/30 hover:text-primary focus:outline-none"
+            >
+              {item.label}
+            </a>
+          )
+        ))}
+      </nav>
+
+      <!-- Mobile Menu Button -->
+      <Button
+        client:load
+        variant="ghost"
+        size="icon"
+        className="md:hidden hover:bg-accent/50"
+        id="menu-toggle"
+        aria-label="Toggle menu"
+      >
+        <FaBars className="h-6 w-6" id="menu-icon-close" />
+        <FaX className="h-6 w-6 hidden" id="menu-icon-open" />
+      </Button>
+    </div>
+  </div>
+
+  <!-- Mobile Navigation -->
+  <div id="mobile-menu" class="hidden md:hidden bg-background/95 backdrop-blur-lg shadow-lg absolute w-full transition-all duration-300 ease-in-out">
+    <nav class="flex flex-col space-y-1 p-4">
+      {navItems.map((item) => (
+        <a
+          href={item.href}
+          class={`font-medium transition-colors py-3 px-4 rounded-md hover:bg-accent ${
+            item.highlight ? 'bg-primary text-primary-foreground hover:bg-primary/90 mt-2' : ''
+          }`}
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  </div>
+</header>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const header = document.getElementById('main-header');
+    const menuToggle = document.getElementById('menu-toggle');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const menuIconOpen = document.getElementById('menu-icon-open');
+    const menuIconClose = document.getElementById('menu-icon-close');
+
+    // Scroll effect - mejorado basado en el Navbar.tsx
+    if (header) {
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          header.classList.add('bg-background/95', 'shadow-md', 'backdrop-blur-lg', 'py-2');
+          header.classList.remove('bg-gradient-to-r', 'from-background/80', 'to-background/60', 'backdrop-blur-md', 'py-4');
+        } else {
+          header.classList.remove('bg-background/95', 'shadow-md', 'backdrop-blur-lg', 'py-2');
+          header.classList.add('bg-gradient-to-r', 'from-background/80', 'to-background/60', 'backdrop-blur-md', 'py-4');
+        }
+      });
+    }
+
+    // Mobile menu toggle
+    if (menuToggle && mobileMenu && menuIconOpen && menuIconClose) {
+      menuToggle.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('hidden');
+        menuIconOpen.classList.toggle('hidden', isOpen);
+        menuIconClose.classList.toggle('hidden', !isOpen);
+      });
+
+      // Close menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.add('hidden');
+          menuIconOpen.classList.add('hidden');
+          menuIconClose.classList.remove('hidden');
+        });
+      });
+    }
+  });
+</script>

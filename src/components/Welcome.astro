@@ -1,0 +1,41 @@
+---
+import Header from './Header.astro';
+import Footer from './Footer.astro';
+import HeroSection from './HeroSection.astro';
+import FeaturesSection from './FeaturesSection.astro';
+import BenefitsSection from './BenefitsSection.astro';
+import FunctionalitiesSection from './FunctionalitiesSection.astro';
+import DemoSection from './DemoSection.astro';
+import PricingSection from './PricingSection.astro';
+import FreeTrialSection from './FreeTrialSection.astro';
+import { Button } from './ui/Button.tsx';
+import Image from 'astro/components/Image.astro';
+---
+
+<Header />
+
+<main class="min-h-screen">
+    <!-- Hero Section -->
+  <HeroSection />
+
+  <!-- Features Section -->
+  <FeaturesSection />
+
+  <!-- Benefits Section -->
+  <BenefitsSection />
+
+  <!-- Functionalities Section -->
+  <FunctionalitiesSection />
+
+  <!-- Demo Section -->
+  <DemoSection />
+
+  <!-- Pricing Section -->
+  <PricingSection />
+
+  <!-- Free  Trial Section -->
+  <FreeTrialSection />
+
+</main>
+
+<Footer />
