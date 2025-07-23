@@ -1,5 +1,6 @@
 ---
-import { Button } from './ui/Button.tsx';
+import { Button } from './ui/Button';
+import { YouTube } from '@astro-community/astro-embed-youtube';
 ---
 
 <section id="demostracion" class="section-padding bg-neutral-50">
@@ -19,21 +20,12 @@ import { Button } from './ui/Button.tsx';
         Mira cómo AuditaCFDI facilita tu trabajo de verificación fiscal.
       </p>
     </div>
-
-    <div 
-      class="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-xl video-container"
-      data-animate="fade-in-up"
-      data-delay="300"
-    >
-      <div class="relative pb-[56.25%] h-0 bg-gray-100">
-        <iframe 
-          class="absolute top-0 left-0 w-full h-full rounded-lg"
-          src="https://www.youtube.com/embed/qnfDOz3NCW4" 
-          title="AuditaCFDI demo video" 
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-          allowfullscreen>
-        </iframe>
+      <div>
+        <YouTube 
+        id="https://youtu.be/qnfDOz3NCW4" 
+        class="max-w-4xl mx-auto rounded-xl overflow-hidden shadow-xl video-container" 
+        title="Audita CFDI en ContadorMx"
+        posterQuality="high" />
       </div>
     </div>
 
