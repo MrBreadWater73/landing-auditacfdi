@@ -2,6 +2,8 @@
 
 Una landing page moderna y responsiva para **AuditaCFDI**, una plataforma especializada en auditoría y gestión de comprobantes fiscales digitales (CFDI). Desarrollada con **Astro**, **React** y **Tailwind CSS**.
 
+![](./landing.png)
+
 ## ✨ Características
 
 - 🚀 **Rendimiento Ultra-rápido** - Construido con Astro para cargas instantáneas
